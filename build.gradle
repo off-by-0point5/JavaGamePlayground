@@ -111,6 +111,9 @@ jar {
     manifest {
         attributes 'Main-Class': 'nomoreonesandzeroes.Main'
     }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
 }
 
 task runJar(type: Exec) {
